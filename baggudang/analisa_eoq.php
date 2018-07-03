@@ -1,5 +1,13 @@
 <script language="javascript">
   $(document).ready(function() {
+    function hitungRop(){
+        document.getElementById('rop').value = Math.ceil(document.getElementById('jumlah').value/30) * document.getElementById('lead_t').value
+    }
+    function hitungEoq(){
+        var q = (2 * document.getElementById('biaya_p').value * document.getElementById('jumlah').value) / (document.getElementById('biaya_s').value);	
+        var qh = Math.sqrt(q); //rumus q mencari kebutuhan ekonomis
+        document.getElementById('eoq').value = Math.ceil(qh)
+    }
     $("#kd_b").change(function() {
         var nisp = $('#kd_b').val();		
 		$.post('load_data.php', // request ke file load_data.php
@@ -10,6 +18,18 @@
 			  $('#biaya_s').val(data[0].biaya_simpan);
 			  $('#lead_t').val(data[0].lead_time);
 			  $('#stok').val(data[0].stok);
+		},'json'
+      );
+   });
+    $("#tgl_transaksi").change(function() {
+        var tgl_transaksi = $('#tgl_transaksi').val();		
+        var kd_barang = $('#kd_b').val();		
+		$.post('get_jumlah_permintaan.php', // request ke file load_data.php
+		{tgl_transaksi: tgl_transaksi, kd_barang: kd_barang},
+		function(data){
+			 $('#jumlah').val(data[0].jumlah);
+             hitungRop();
+             hitungEoq();
 		},'json'
       );
    });
@@ -143,10 +163,7 @@ clearInterval(interval);}
 				<tr>
 					<td style="width: 150px;"><label>Tanggal</label></td>
 					<td><input name="tgl" type="text" class="form-control" id="tgl" autocomplete="off" style="width: 160px;" required></td>
-					
-					
 				</tr>
-
 				<tr>
 					<td>Kode Barang</td>							
 							<td><select class="form-control" name="kd_b" id="kd_b" style="width: 160px;">
@@ -161,6 +178,10 @@ clearInterval(interval);}
 								?>
 							</select></td>
 
+				</tr>
+                <tr>
+					<td style="width: 150px;"><label>Bulan Transaksi</label></td>
+					<td><input name="tgl_transaksi" type="text" class="form-control" id="tgl_transaksi" autocomplete="off" style="width: 160px;" required></td>
 				</tr>
 				<tr>
 					<td><label>Nama Barang</label></td>
@@ -278,13 +299,7 @@ clearInterval(interval);}
 <script type="text/javascript">
 		$(document).ready(function(){
 			$("#tgl").datepicker({dateFormat : 'yy/mm/dd'});							
+			$("#tgl_transaksi").datepicker({changeMonth:true,changeYear:true,dateFormat : 'mm yy'});							
 		});
-		function hitungRop(){
-			document.getElementById('rop').value = Math.ceil(document.getElementById('jumlah').value/30) * document.getElementById('lead_t').value
-		}
-		function hitungEoq(){
-			var q = (2 * document.getElementById('biaya_p').value * document.getElementById('jumlah').value) / (document.getElementById('biaya_s').value);	
-			var qh = Math.sqrt(q); //rumus q mencari kebutuhan ekonomis
-			document.getElementById('eoq').value = Math.ceil(qh)
-		}
+		
 	</script>

@@ -46,7 +46,7 @@
 	$lead_t=$_POST['lead_t'];
 
 
-	$query=mysql_query("update barang set nama_barang='$nama', nm_supp='$supp', hrg_beli='$h_beli', hrg_jual='$h_jual', stok='$stok1' where kd_barang='$kd'");
+	$query=mysql_query("update barang set nama_barang='$nama', nm_supp='$supp', hrg_beli='$h_beli', hrg_jual='$h_jual', stok='$stok1',biaya_pesan=$biaya_p,biaya_simpan=$biaya_p,lead_time=$lead_t where kd_barang='$kd'");
 
 	if($query){
 		?><script language="javascript">document.location.href="?page=data_barang&x=3";</script><?php

@@ -22,8 +22,7 @@ $start = ($page - 1) * $per_hal;
 		<th class="col-md-2">Supplier</th>
 		<th class="col-md-2">Harga Beli</th>
 		<th class="col-md-2">Harga Jual</th>
-		<th class="col-md-1">Stok Awal</th>
-		<th class="col-md-1">Stok Akhir</th>
+		<th class="col-md-1">Stok</th>
 	</tr>
 	  <?php
 	   if(isset($_GET['cari'])){

@@ -35,6 +35,18 @@ $sql = mysql_query("select * from barang where kd_barang='$_GET[kd]'");
 					<td><label>Stok</label></td>
 					<td><input name="stok" type="number" class="form-control" value="<?php echo $r['stok'] ?>"></td>
 				</tr>
+                <tr>
+					<td><label>Biaya Pesan</label></td>
+					<td><input name="biaya_p"  type="text" class="form-control" value="<?php echo $r['biaya_pesan'] ?>" required></td>
+				</tr>
+				<tr>
+					<td><label>Biaya Simpan</label></td>
+					<td><input name="biaya_s" type="text" class="form-control" value="<?php echo $r['biaya_simpan'] ?>" required></td>
+				</tr>
+				<tr>
+					<td><label>Lead Time</label></td>
+					<td><input name="lead_t" type="text" class="form-control" value="<?php echo $r['lead_time'] ?>" required></td>
+				</tr>
 			<tr>
 				<td></td>
 				<td><input type="submit" name="edit" class="btn btn-info" value="Edit"></td>

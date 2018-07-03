@@ -49,7 +49,7 @@ clearInterval(interval);}
 
 
 	$query=mysql_query("insert into penjualan values('','$nama_p','$no_f','$tgl','$kd_b','$nama_b','$jum','$harga','$total')");
-	$query=mysql_query("update barang set stok='$jum'-stok where kd_barang='$kd_b' ");
+	$query=mysql_query("update barang set stok=stok-'$jum' where kd_barang='$kd_b' ");
 
 	if($query){
 		?><script language="javascript">document.location.href="?page=data_penjualan&x=2";</script><?php
@@ -72,7 +72,7 @@ clearInterval(interval);}
 	$query=mysql_query("update penjualan set tgl_faktur='$tgl', no_faktur='$no_f', kd_barang='$kd_b',
 										 nama_brg='$nama_b', jumlah='$jum', harga='$harga', total='$total'
 										  where id_penjualan='$id'");
-	$query=mysql_query("update barang set stok='$jum'-stok where kd_barang='$kd_b' ");
+	$query=mysql_query("update barang set stok=stok-'$jum' where kd_barang='$kd_b' ");
 
 	if($query){
 		?><script language="javascript">document.location.href="?page=data_penjualan&x=3";</script><?php
@@ -103,7 +103,7 @@ clearInterval(interval);}
 
 
 	$query=mysql_query("insert into penjualan values('','$nama_p','$no_f','$tgl','$kd_b','$nama_b','$jum','$harga','$total')");
-	$query=mysql_query("update barang set stok='$jum'-stok where kd_barang='$kd_b' ");
+	$query=mysql_query("update barang set stok=stok-'$jum' where kd_barang='$kd_b' ");
 
 	$sjum=mysql_fetch_array(mysql_query("select count(*) from penjualan where no_faktur='$no_f'"));
 	$jum1 = $sjum[0];
